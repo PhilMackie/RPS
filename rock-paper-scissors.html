@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+
+ <!-- Begin with a Function called computerPlay -->
+  function computerPlay(){
+    const randInt = Math.floor((Math.random() * 3) + 1);
+    if (randInt == 1){
+      return "Rock";
+    } else {
+      if (randInt==2){
+        return "Paper";
+      } else {
+        if (randInt== 3){
+          return "Paper";
+        };
+      };
+    };
+  }
+ <!-- End of computerPlay -->
+
+<!-- a function for input -->
+	function userInput(){
+    const userSelection = (prompt("Rock, Paper or Scissors?"));
+    const properSelection = (userSelection.charAt(0).toUpperCase() + userSelection.slice(1).toLowerCase());
+    return properSelection;
+  };
+<!-- end userInput-->
+
+<!-- logging and returning functions as declared variables <3-->
+const playerSelection = userInput();
+console.log("The user has selected: " + playerSelection);
+const computerSelection = computerPlay();
+console.log("The computer has selected: " + computerSelection);
+<!-- end of logging and returning-->
+
+
+<!-- a comparative function-->
+playerWin = 0;
+computerWin = 0;
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection === computerSelection){
+    console.log("This is a tie, try again");
+  } else { 
+    if (playerSelection == "Rock"||computerSelection == "Paper"){
+    return playerWin = ++playerWin;
+    console.log(playerWin); 
+  } else {
+    console.log("REMIX");
+  };
+}
+}
+playRound();
+
+  </script>
+</body>
+</html>
