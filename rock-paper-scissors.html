@@ -38,12 +38,15 @@ console.log("The user has selected: " + playerSelection);
 const computerSelection = computerPlay();
 console.log("The computer has selected: " + computerSelection);
 <!-- end of logging and returning-->
-
+console.log(playerSelection);
+console.log(computerSelection);
 
 <!-- a comparative function-->
 playerWin = 0;
 computerWin = 0;
 function playRound(playerSelection, computerSelection) {
+  console.log(playerSelection);
+  console.log(computerSelection);
   if (playerSelection === computerSelection){
     console.log("This is a tie, try again");
   } else { 
