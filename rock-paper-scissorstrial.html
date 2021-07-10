@@ -5,14 +5,10 @@
   <meta charset="UTF-8"/>
 </head>
 <body>
-  <script>
-
-
-
+<script>
 
 <!-- a comparative function-->
 function playRound(playerSelection, computerSelection) {
-  
   <!-- Begin with a Function called computerPlay -->
   function computerPlay(){
     const randInt = Math.floor((Math.random() * 3) + 1);
@@ -39,6 +35,7 @@ function playRound(playerSelection, computerSelection) {
   
 
     <!-- logging and returning functions as declared variables <3-->
+    console.log ("-----New Round!-----");
     var playerSelection = userInput();
     console.log("The user has selected: " + playerSelection);
     var computerSelection = computerPlay();
@@ -54,14 +51,14 @@ function playRound(playerSelection, computerSelection) {
   } else { 
     if (playerSelection == "Rock"&&computerSelection == "Scissors"){
     var playerWin = ++playerWin;
-    console.log("The player has won " + playerWin + " times."); 
-  } if (playerSelection == "Scissors"&&computerSelection == "Paper"){
+    console.log("The player has won " + playerWin + " times!"); 
+  } else if (playerSelection == "Scissors"&&computerSelection == "Paper"){
     var playerWin = ++playerWin;
     console.log("The player has won " + playerWin + " times."); 
-  } if (playerSelection == "Paper"&&computerSelection == "Rock"){
+  } else if (playerSelection == "Paper"&&computerSelection == "Rock"){
     var playerWin = ++playerWin;
     console.log("The player has won " + playerWin + " times!"); 
-  } else {
+  } else {    
     var computerWin = ++computerWin;
     console.log("The computer has won " + computerWin + " times!");
   };
