@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Page Title</title>
+  <title>Phil's RPS</title>
   <meta charset="UTF-8"/>
 </head>
 <body>
   <script>
 
- <!-- Begin with a Function called computerPlay -->
+
+
+
+<!-- a comparative function-->
+function playRound(playerSelection, computerSelection) {
+  
+  <!-- Begin with a Function called computerPlay -->
   function computerPlay(){
     const randInt = Math.floor((Math.random() * 3) + 1);
     if (randInt == 1){
       return "Rock";
     } else {
-      if (randInt==2){
+      if (randInt == 2){
         return "Paper";
       } else {
-        if (randInt== 3){
+        if (randInt == 3){
           return "Paper";
         };
       };
@@ -30,11 +36,8 @@
     var properSelection = (userSelection.charAt(0).toUpperCase() + userSelection.slice(1).toLowerCase());
     return properSelection;
   };
+  
 
-
-<!-- a comparative function-->
-function playRound(playerSelection, computerSelection) {
-    
     <!-- logging and returning functions as declared variables <3-->
     var playerSelection = userInput();
     console.log("The user has selected: " + playerSelection);
@@ -42,25 +45,40 @@ function playRound(playerSelection, computerSelection) {
     console.log("The computer has selected: " + computerSelection);
     <!-- end of logging and returning-->
 
-
     var playerWin = 0;
-    var computerWin = 0;
-  if (playerSelection === computerSelection){
-    console.log("This is a tie, try again");
+      var computerWin = 0;
+      <!-- 5 countdown -->
+     if (playerSelection === computerSelection){
+     console.log("This is a tie, try again");
+     playRound();
   } else { 
-    if (playerSelection == "Rock"||computerSelection == "Scissors"){
+    if (playerSelection == "Rock"&&computerSelection == "Scissors"){
     var playerWin = ++playerWin;
-    console.log(playerWin); 
-  } if (playerSelection == "Scissors"||computerSelection == "Paper"){
+    console.log("The player has won " + playerWin + " times."); 
+  } if (playerSelection == "Scissors"&&computerSelection == "Paper"){
     var playerWin = ++playerWin;
-    console.log(playerWin); 
-  } if (playerSelection == "Paper"||computerSelection == "Rock"){
+    console.log("The player has won " + playerWin + " times."); 
+  } if (playerSelection == "Paper"&&computerSelection == "Rock"){
     var playerWin = ++playerWin;
-    console.log(playerWin); 
+    console.log("The player has won " + playerWin + " times!"); 
   } else {
-    console.log("REMIX");
+    var computerWin = ++computerWin;
+    console.log("The computer has won " + computerWin + " times!");
   };
-}
+
+    function game(){
+  <!-- 5 countdown-->
+    if (computerWin || playerWin < 5){
+      playRound();
+    };
+      if (playerWin == 5){
+        console.log("The User Wins")
+      } else if (computerWin == 5){
+        console.log("The Computer Wins")
+      }
+      }
+    game();
+    }
 }
 playRound();
 
