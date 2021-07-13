@@ -5,80 +5,117 @@
   <meta charset="UTF-8"/>
 </head>
 <body>
-<script>
 
-/* a comparative function */
-function playRound(playerSelection, computerSelection) {
-  // Begin with a Function called computerPlay
-  function computerPlay(){
-    const randInt = Math.floor((Math.random() * 3) + 1);
-    if (randInt == 1){
-      return "Rock";
-    } else {
-      if (randInt == 2){
-        return "Paper";
-      } else {
-        if (randInt == 3){
-          return "Scissors";
-        };
-      };
+<div id='log'></div>
+<!-- <script src='./rpm.js'></script> -->
+
+<script>
+  function computerChoosePlayItem() {
+    const randInt = Math.floor(Math.random() * 3 + 1);
+    let result;
+
+    switch (randInt) {
+      case 1:
+        result = "Rock";
+        break;
+      case 2:
+        result = "Paper";
+        break;
+      case 3:
+        result = "Scissors";
+        break;
+      default:
+        return "Bad selection";
+        break;
+    }
+
+    console.info(`The computer played ${result}`);
+
+    return result;
+  }
+
+  // a function for input
+  function userGetInput() {
+    const userSelection = prompt("Rock, Paper or Scissors?");
+    const formattedSelection =
+      userSelection.charAt(0).toUpperCase() +
+      userSelection.slice(1).toLowerCase();
+
+    console.info(`The player played ${formattedSelection}`);
+
+    return formattedSelection;
+  }
+
+  function gameDetermineWinner({ playerSelection, computerSelection }) {
+    if (playerSelection === computerSelection) return null;
+
+    if (
+      (playerSelection == "Rock" && computerSelection == "Scissors") ||
+      (playerSelection == "Scissors" && computerSelection == "Paper") ||
+      (playerSelection == "Paper" && computerSelection == "Rock")
+    ) {
+      return "player";
+    }
+
+    return "computer";
+  }
+
+  function playRound() {
+    console.log("-----New Round!-----");
+
+    const playerSelection = userGetInput();
+    console.log("USER: " + playerSelection);
+
+    const computerSelection = computerChoosePlayItem();
+    console.log("COMPUTER: " + computerSelection);
+
+    return {
+      playerSelection,
+      computerSelection,
     };
   }
- // End of computerPlay
 
- // a function for input
-	function userInput(){
-    var userSelection = (prompt("Rock, Paper or Scissors?"));
-    var properSelection = (userSelection.charAt(0).toUpperCase() + userSelection.slice(1).toLowerCase());
-    return properSelection;
-  };
-  
+  function appendLogItem(message) {
+    const logArea = document.getElementById("log");
+    logArea.append(message);
+    logArea.append(document.createElement("br"));
+  }
 
-    // logging and returning functions as declared variables <3
-    console.log ("-----New Round!-----");
-    var playerSelection = userInput();
-    console.log("USER: " + playerSelection);
-    var computerSelection = computerPlay();
-    console.log("COMPUTER: " + computerSelection);
-    // end of logging and returning 
+  function playGame() {
+    let computerWins = 0;
+    let playerWins = 0;
 
-    var playerWin = 0;
-    var computerWin = 0;
-      // 5 countdown
-     if (playerSelection === computerSelection){
-     console.log("This is a tie, try again");
-     playRound();
-  } else { 
-    if (playerSelection == "Rock"&&computerSelection == "Scissors"){
-    var playerWin = ++playerWin;
-    console.log("The player has won " + playerWin + " times!"); 
-  } else if (playerSelection == "Scissors"&&computerSelection == "Paper"){
-    var playerWin = ++playerWin;
-    console.log("The player has won " + playerWin + " times."); 
-  } else if (playerSelection == "Paper"&&computerSelection == "Rock"){
-    var playerWin = ++playerWin;
-    console.log("The player has won " + playerWin + " times!"); 
-  } else {    
-    var computerWin = ++computerWin;
-    console.log("The computer has won " + computerWin + " times!");
-  };
+    do {
+      const roundSelections = playRound();
+      const winner = gameDetermineWinner(roundSelections);
 
-  function game(){
-  // 5 countdown
-    if (computerWin || playerWin < 5){
-      playRound();
-    };
-      if (playerWin == 5){
-        console.log("The User Wins")
-      } else if (computerWin == 5){
-        console.log("The Computer Wins")
-      }
-      }
-      game();
+      if (!winner) console.info("Tie!");
+      if (winner) console.info(`The round goes to ${winner}!`);
+
+      if (winner === "player") playerWins++;
+      if (winner === "computer") computerWins++;
+
+      console.info(
+        `The score is: player ${playerWins} - computer ${computerWins}`
+      );
+
+      appendLogItem(
+        `The score is: player ${playerWins} - computer ${computerWins}`
+      );
+    } while (computerWins !== 5 && playerWins !== 5);
+
+    if (computerWins === 5) {
+      const computerWinningString = ">>> The computer wins! <<<";
+      console.info(computerWinningString);
+      return appendLogItem(computerWinningString);
     }
-}
-playRound();
 
-  </script>
+    const playerWinningString = ">>> The player wins! <<<";
+    console.info(playerWinningString);
+    return appendLogItem(playerWinningString);
+  }
+
+  playGame();
+</script>
 </body>
 </html>
