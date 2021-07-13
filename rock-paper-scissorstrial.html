@@ -7,9 +7,9 @@
 <body>
 <script>
 
-<!-- a comparative function-->
+/* a comparative function */
 function playRound(playerSelection, computerSelection) {
-  <!-- Begin with a Function called computerPlay -->
+  // Begin with a Function called computerPlay
   function computerPlay(){
     const randInt = Math.floor((Math.random() * 3) + 1);
     if (randInt == 1){
@@ -24,9 +24,9 @@ function playRound(playerSelection, computerSelection) {
       };
     };
   }
- <!-- End of computerPlay -->
+ // End of computerPlay
 
- <!-- a function for input -->
+ // a function for input
 	function userInput(){
     var userSelection = (prompt("Rock, Paper or Scissors?"));
     var properSelection = (userSelection.charAt(0).toUpperCase() + userSelection.slice(1).toLowerCase());
@@ -34,17 +34,17 @@ function playRound(playerSelection, computerSelection) {
   };
   
 
-    <!-- logging and returning functions as declared variables <3-->
+    // logging and returning functions as declared variables <3
     console.log ("-----New Round!-----");
     var playerSelection = userInput();
-    console.log("The user has selected: " + playerSelection);
+    console.log("USER: " + playerSelection);
     var computerSelection = computerPlay();
-    console.log("The computer has selected: " + computerSelection);
-    <!-- end of logging and returning-->
+    console.log("COMPUTER: " + computerSelection);
+    // end of logging and returning 
 
     var playerWin = 0;
     var computerWin = 0;
-      <!-- 5 countdown -->
+      // 5 countdown
      if (playerSelection === computerSelection){
      console.log("This is a tie, try again");
      playRound();
@@ -63,8 +63,8 @@ function playRound(playerSelection, computerSelection) {
     console.log("The computer has won " + computerWin + " times!");
   };
 
-    function game(){
-  <!-- 5 countdown-->
+  function game(){
+  // 5 countdown
     if (computerWin || playerWin < 5){
       playRound();
     };
@@ -74,7 +74,7 @@ function playRound(playerSelection, computerSelection) {
         console.log("The Computer Wins")
       }
       }
-    game();
+      game();
     }
 }
 playRound();
