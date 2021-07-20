@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Phil's RPS</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+<script>
+// function for computerPlay - write as switch
+function computerPlay() {
+    // randint for computer selection
+    const randInt = Math.floor((Math.random() * 3) + 1);
+    let result;
+
+    switch(randInt){
+        case 1:
+            result = "Rock";
+            break;
+        case 2: 
+            result = "Paper";
+            break;
+        case 3:
+            result = "Scissors";
+            break;
+        default:
+            return "Incorrect Selection";
+            break;
+    }
+    console.log(`The computer played ${result}`);
+
+}
+computerPlay();
+
+// function for userPlay
+function userPlay(){
+    var userSelection = (prompt("Rock, Paper or Scissors?"));
+    var properSelection = (userSelection.charAt(0).toUpperCase() + userSelection.slice(1).toLowerCase());
+    return properSelection;
+  console.log("User played " + properSelection);
+}
+userPlay();
+
+// function for comparison
+
+// function for playGame
+
+
+</script>
+
