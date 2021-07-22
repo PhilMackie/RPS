@@ -37,9 +37,10 @@ function userPlay(){
     return playerSelection;
 }
 // function for comparison
-function compareResults(){
-    if (playerSelection === computerSelection) 
+function compareResults({ playerSelection, computerSelection}){
+    if (playerSelection === computerSelection) {
     return null;
+    }
     if (
     (playerSelection == "Rock" && computerSelection == "Scissors") ||
     (playerSelection == "Scissors" && computerSelection == "Paper") ||
@@ -53,7 +54,7 @@ function compareResults(){
 }
 
 // function for playRound - does both at once
-function playRound() {
+function playRound(){
     console.log("-----New Round!-----");
 
     const playerSelection = userPlay();
@@ -72,6 +73,7 @@ function playRound() {
   function playGame() {
     let computerWins = 0;
     let playerWins = 0;
+
     do {
         const roundSelections = playRound();
         const winner = compareResults(roundSelections);
@@ -85,19 +87,14 @@ function playRound() {
         console.info(
         `The score is: player ${playerWins} - computer ${computerWins}`
       );
-      appendLogItem(
-        `The score is: player ${playerWins} - computer ${computerWins}`
-      );
     } while (computerWins !== 5 && playerWins !== 5);
 
     if (computerWins === 5) {
       const computerWinningString = ">>> The computer wins! <<<";
-      console.info(computerWinningString);
-      return appendLogItem(computerWinningString);
+      return console.info(computerWinningString);
     }
     const playerWinningString = ">>> The player wins! <<<";
-    console.info(playerWinningString);
-    return appendLogItem(playerWinningString);
+    return console.info(playerWinningString);
   }
   playGame();
 </script>
